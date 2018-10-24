@@ -1,3 +1,3 @@
 # Storytime
 
-TODO
+Basic movement will add platforms once finsihed with Jump command. 
