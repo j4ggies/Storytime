@@ -4,50 +4,70 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-   
-    private Rigidbody2D rb;
-    public float speed;
-    public float jumpForce;
-    private float moveInput;
 
-    private bool facingRight = true;
+    private Rigidbody2D myRigidbody;
 
+    [SerializeField]
+    private float movementSpeed;
+
+    private bool facingRight;
+
+    private Animator myAnimator;
+    private gameMaster gm;
 
 	// Use this for initialization
-	void Start () {
 
-        
-        rb = GetComponent<Rigidbody2D>();
+    
 
+    void Start () {
+
+        facingRight = true;
+        myRigidbody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
+        gm = GameObject.FindWithTag("GameMaster").GetComponent<gameMaster>();
 
     }
 	
+	// Update is called once per frame
+	void FixedUpdate () {
 
-    void FixedUpdate()
+        float horizontal = Input.GetAxis("Horizontal");
+
+        HandleMovement(horizontal);
+
+        Flip(horizontal);
+	}
+
+    private void HandleMovement(float horizontal)
     {
 
-        moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-       
-        if(facingRight == false && moveInput > 0) {
+        myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
 
-            Flip();
+        myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+    }
 
-        } else if(facingRight == true && moveInput < 0) {
+    private void Flip(float horizontal)
+    {
+        if(horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+        {
 
-            Flip();
+            facingRight = !facingRight;
 
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
         }
 
     }
 
-    void Flip()
+    void OnCollisionEnter2D(Collision2D col)
     {
-
-        facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        if (col.gameObject.tag == "Coin")
+        {
+            //ScopeScript.scoreValue += 10;
+            Destroy(col.gameObject);
+            gm.point += 1;
+        }
 
     }
 
