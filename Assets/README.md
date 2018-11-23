@@ -1,8 +1,8 @@
 # Readme
 
-Scene switching
+Simple Test
 
-## Flow
+## Scene Flow
 
 ```
                  /--> Level 1
@@ -26,10 +26,20 @@ Make sure that the scenes are in the following order in build settings:
 
 3. `Level_001`
 
+## Popup Logic
+
+"Pop up" the masks, disable the masks, then enable the corresponding blocks. 
+
+## World and avatar movement
+
+
+
 ## TODO
 
 Loading animations:
 
-- Shader for "shimmer" effect on sprite
+- Shader for "shimmer" effect on loading book sprite
 
 - Fade in/out when enabling/disabling loading canvas
+
+- Combine scripts in level scenes

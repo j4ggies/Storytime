@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SceneController
   - LoaderCanvas
+  - PopupMask
   layers:
   - Default
   - TransparentFX
