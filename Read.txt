@@ -1,1 +1,1 @@
-Art,Physics Material, Scenes, and Scripts contain all the files that I made and added. All you need to do is import them to your build. 
+Art,Physics Material, Scenes, and Scripts folders contain all the files that I made and used. All you need to do is import them to your build. You do not need to import the Scenes folder. 
