@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour {
 
-    //Intergers 
     public int curHealth;
     public int maxHealth;
 
-    //floats
     public float distance;
     public float wakeRange;
     public float shootInterval;
@@ -26,21 +24,16 @@ public class Turret : MonoBehaviour {
 
     void Awake()
     {
-
         anim = gameObject.GetComponent<Animator>();
-
     }
 
     void Start()
     {
-
         curHealth = maxHealth;
-
     }
 
     void Update()
     {
-
         anim.SetBool("Awake", awake);
         anim.SetBool("LookingRight", lookingRight);
 
@@ -48,13 +41,9 @@ public class Turret : MonoBehaviour {
 
         if (target.transform.position.x > target.transform.position.x)
         {
-
             lookingRight = true;
-
         }
-
     }
-
     void RangeCheck()
     {
         distance = Vector3.Distance(transform.position, target.transform.position);
@@ -62,13 +51,11 @@ public class Turret : MonoBehaviour {
         if(distance < wakeRange)
         {
             awake = true;
-
         }
 
         if (distance > wakeRange)
         {
             awake = false;
-
         }
 
     }
@@ -92,26 +79,14 @@ public class Turret : MonoBehaviour {
 
             }
 
-
             if (attackingRight)
             {
-
                 GameObject bulletClone;
                 bulletClone = Instantiate(bullet, shootPointLeft.transform.position, shootPointLeft.transform.rotation) as GameObject;
                 bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
                 bulletClone.transform.rotation = Quaternion.FromToRotation(Vector3.right, direction);
                 bulletTimer = 0;
-
             }
-
-
         }
-
     }
-
-
-
-
-
-
 }
