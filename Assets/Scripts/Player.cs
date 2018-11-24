@@ -7,13 +7,14 @@ public class Player : MonoBehaviour {
     public float speed = 50f;
     public float jumpPower = 150f;
     public float maxSpeed = 3;
+
     public bool grounded;
     public bool canDoubleJump;
-    public Vector3 respawnPoint;
-    private Rigidbody2D rb2d;
  
+    private Rigidbody2D rb2d;
 
-    
+    public Vector3 respawnPoint;
+
 
     //private bool facingRight;
 
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour {
 
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
 
 
     }
@@ -123,7 +125,7 @@ public class Player : MonoBehaviour {
         {
             //ScopeScript.scoreValue += 10;
             Destroy(col.gameObject);
-           // gm.point += 1;
+            gm.point += 1;
         }
 
     }
