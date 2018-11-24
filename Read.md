@@ -15,7 +15,7 @@ Basic Movement - Arrow Keys
 
 #Checkpoint
 
-Character must collide with objects with the checkpoint point to intialize respawn point and will repawn if they collide 
+Character must collide with objects with the CheckPoint tag to intialize the respawn point and will then respawn if they collide 
 with a object that has a FallDetector tag.
 
 
