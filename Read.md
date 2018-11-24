@@ -5,6 +5,7 @@ The ones not are Jacob stuff. You can import all the folders into your build, th
 
 #Movement
 
+Object must have the Player script and the Player tag.
 
 Double Jump - Hit Spacebar twice
 
