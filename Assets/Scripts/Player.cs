@@ -9,9 +9,9 @@ public class Player : MonoBehaviour {
     public float maxSpeed = 3;
     public bool grounded;
     public bool canDoubleJump;
-
+    public Vector3 respawnPoint;
     private Rigidbody2D rb2d;
-
+ 
 
     
 
@@ -124,6 +124,22 @@ public class Player : MonoBehaviour {
             //ScopeScript.scoreValue += 10;
             Destroy(col.gameObject);
            // gm.point += 1;
+        }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "FallDetector")
+        {
+
+            transform.position = respawnPoint;
+        }
+
+        if (other.tag == "CheckPoint")
+        {
+            respawnPoint = other.transform.position;
+
         }
 
     }
