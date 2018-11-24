@@ -1,6 +1,6 @@
 
 All files I created or used are the Art, Physics, Scenes, and Scripts folders inside the Assets folder. 
-The ones not are Jacob stuff.You can import all the folders inside your build, the Scene folder isn't required.
+The ones not are Jacob stuff. You can import all the folders into your build, the Scenes folder isn't required.
 
 
 Movement
