@@ -21,7 +21,7 @@ with a object that has a FallDetector tag.
 
 #Scoring System
 
-Each coin with the Coin tag counts as 1 so your text will display how many that you collected. It is all handle by the object with the GameMaster tag that runs the gameMaster Script. Check the script inspector where you can drag the text you want to use to display the number of coins collected by dragging it onto the PointText parameter. 
+Each coin with the Coin tag counts as 1 so your text will display how many that you collected. It is all handle by the object with the GameMaster tag that runs the gameMaster Script. Check the script inspector where you can drag the text object you want to use to display the number of coins collected by dragging it onto the PointText parameter. 
 
 
 
