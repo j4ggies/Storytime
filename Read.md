@@ -3,7 +3,7 @@ All files I created or used are the Art, Physics, Scenes, and Scripts folders in
 The ones not are Jacob stuff. You can import all the folders into your build, the Scenes folder isn't required.
 
 
-Movement
+#Movement
 
 
 Double Jump - Hit Spacebar twice
@@ -13,7 +13,7 @@ Jump - Hit Spacebar once (Can change Jump Power in Player inspector)
 Basic Movement - Arrow Keys
 
 
-Checkpoint
+#Checkpoint
 
 Character must collide with objects with the checkpoint point to intialize respawn point and will repawn if they collide 
 with a object that has a FallDetector tag.
