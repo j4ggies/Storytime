@@ -24,20 +24,21 @@ public class Spread : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			rotationStartTime = Time.time; //Begin animation
-
-			//Make every PopupGroup pop up
-			PopupGroup[] popUpGroups = GetComponentsInChildren<PopupGroup>();
-			foreach (PopupGroup group in popUpGroups)
-			{
-				group.Pop();
-			}
-		}
-
 		Animate();
 	}
+
+	public void Turn()
+	{
+		rotationStartTime = Time.time; //Begin animation
+
+		//Make every PopupGroup pop up
+		PopupGroup[] popUpGroups = GetComponentsInChildren<PopupGroup>();
+		foreach (PopupGroup group in popUpGroups)
+		{
+			group.Pop();
+		}
+	}
+
 	void Animate()
 	{
 		//If we set our rotationStartTime then we should be animating
