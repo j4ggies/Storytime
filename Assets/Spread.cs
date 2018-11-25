@@ -21,10 +21,23 @@ public class Spread : MonoBehaviour {
 	void Start () {
 		LeftPage.transform.RotateAround(SpinePoint.position, Vector3.forward, -180); //Our spread is initially open, so we need to close it (set it to UNOPENED)
 		state = SpreadState.UNOPENED;
+		SetPopupVisibility(false);
 	}
 	
 	void Update () {
 		Animate();
+	}
+
+	void SetPopupVisibility(bool visible)
+	{
+		PopupGroup[] popUpGroups = GetComponentsInChildren<PopupGroup>();
+		foreach (PopupGroup group in popUpGroups)
+		{
+			foreach (MeshRenderer r in group.gameObject.GetComponentsInChildren<MeshRenderer>())
+			{
+				r.enabled = visible;
+			}
+		}
 	}
 
 	public void Turn()
@@ -36,6 +49,11 @@ public class Spread : MonoBehaviour {
 		foreach (PopupGroup group in popUpGroups)
 		{
 			group.Pop();
+		}
+
+		if (state == SpreadState.UNOPENED)
+		{
+			SetPopupVisibility(true);
 		}
 	}
 
@@ -67,6 +85,11 @@ public class Spread : MonoBehaviour {
 			{
 				state++;
 				rotationStartTime = -1;
+
+				if (state == SpreadState.CLOSED)
+				{
+					SetPopupVisibility(false);
+				}
 			}
 		}
 	}
