@@ -1566,7 +1566,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 30
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2911,8 +2911,8 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 40
+  m_Intensity: 2
+  m_Range: 90
   m_SpotAngle: 91.3
   m_CookieSize: 10
   m_Shadows:
@@ -2944,13 +2944,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955125341}
-  m_LocalRotation: {x: 0.0113753, y: 0.042453196, z: -0.25856897, w: -0.9649924}
-  m_LocalPosition: {x: 0.7490387, y: 1.4360003, z: -28.35}
+  m_LocalRotation: {x: 0.23877078, y: -0.10792916, z: 0.26074615, w: 0.929167}
+  m_LocalPosition: {x: 0.7490387, y: 7.36, z: -22.34}
   m_LocalScale: {x: 16.000029, y: 16.000027, z: 16.000011}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 100, z: 30.000002}
+  m_LocalEulerAnglesHint: {x: 30, y: -5.038, z: 30.000002}
 --- !u!1 &958522686
 GameObject:
   m_ObjectHideFlags: 0

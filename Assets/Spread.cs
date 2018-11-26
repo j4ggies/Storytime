@@ -23,6 +23,16 @@ public class Spread : MonoBehaviour {
 		state = SpreadState.UNOPENED;
 		SetPopupVisibility(false);
 	}
+
+	public void SetLeftPageVisibility(bool visibility)
+	{
+		LeftPage.GetComponent<MeshRenderer>().enabled = visibility;
+	}
+
+	public void SetRightPageVisibility(bool visibility)
+	{
+		RightPage.GetComponent<MeshRenderer>().enabled = visibility;
+	}
 	
 	void Update () {
 		Animate();
@@ -54,6 +64,11 @@ public class Spread : MonoBehaviour {
 		if (state == SpreadState.UNOPENED)
 		{
 			SetPopupVisibility(true);
+			SetLeftPageVisibility(true);
+			SetRightPageVisibility(true);
+		} else if (state == SpreadState.OPEN)
+		{
+			SetRightPageVisibility(false);
 		}
 	}
 
@@ -86,9 +101,14 @@ public class Spread : MonoBehaviour {
 				state++;
 				rotationStartTime = -1;
 
-				if (state == SpreadState.CLOSED)
+				if (state == SpreadState.OPEN)
+				{
+
+				} if (state == SpreadState.CLOSED)
 				{
 					SetPopupVisibility(false);
+					SetLeftPageVisibility(false);
+					SetRightPageVisibility(false);
 				}
 			}
 		}

@@ -9,9 +9,16 @@ public class BookController : MonoBehaviour {
 	private int spreadIndex = -1;
 	
 	void Start () {
-		foreach (GameObject spread in Spreads)
+		foreach (GameObject obj in Spreads)
 		{
-			spread.transform.position = new Vector3(+8.5f, 0, 0);
+			obj.transform.position = new Vector3(+8.5f, 0, 0);
+
+			Spread spread = obj.GetComponent<Spread>();
+			spread.SetLeftPageVisibility(false);
+			if (!obj.Equals(Spreads[0]))
+			{
+				spread.SetRightPageVisibility(false);
+			}
 		}
 	}
 	
@@ -19,12 +26,19 @@ public class BookController : MonoBehaviour {
 	{
 		if (spreadIndex < Spreads.Length - 1)
 		{
-			Spreads[spreadIndex + 1].GetComponent<Spread>().Turn();
+			Spread nextSpread = Spreads[spreadIndex + 1].GetComponent<Spread>();
+			nextSpread.Turn();
 		}
 
 		if (spreadIndex >= 0)
 		{
-			Spreads[spreadIndex].GetComponent<Spread>().Turn();
+			Spread currentSpread = Spreads[spreadIndex].GetComponent<Spread>();
+			currentSpread.Turn();
+
+			if (spreadIndex == Spreads.Length - 1)
+			{
+				currentSpread.SetRightPageVisibility(true);
+			}
 		}
 
 		spreadIndex++;
