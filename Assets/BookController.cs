@@ -11,7 +11,7 @@ public class BookController : MonoBehaviour {
 	void Start () {
 		foreach (GameObject spread in Spreads)
 		{
-			spread.transform.position = new Vector3(0, 0, 0);
+			spread.transform.position = new Vector3(+8.5f, 0, 0);
 		}
 	}
 	
