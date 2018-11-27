@@ -58,9 +58,38 @@ public class PopupGroup : MonoBehaviour {
 		rotationFix.transform.localScale = Vector3.one;
 		rotationFix.transform.rotation = Quaternion.Euler(90, 0, 0);
 
-		BoxCollider2D collider = rotationFix.AddComponent<BoxCollider2D>();
-		collider.size = Vector2.one;
-		colliderObjects.Add(rotationFix);
+        if (child.tag == "Player")
+        {
+            CircleCollider2D bottomCollider = rotationFix.AddComponent<CircleCollider2D>();
+            bottomCollider.radius = 0.22f;
+            bottomCollider.offset = new Vector2(0, -0.1f);
+            BoxCollider2D topCollider = rotationFix.AddComponent<BoxCollider2D>();
+            topCollider.size = new Vector2(0.45f, 0.41f);
+            topCollider.offset = new Vector2(0, 0.11f);
+            PhysicsMaterial2D slippery = new PhysicsMaterial2D();
+            slippery.friction = 0;
+            slippery.bounciness = 0;
+            topCollider.sharedMaterial = slippery;
+        } else {
+            BoxCollider2D collider = rotationFix.AddComponent<BoxCollider2D>();
+            collider.size = Vector2.one;
+            colliderObjects.Add(rotationFix);
+
+            if (child.tag == "SwitchToken")
+            {
+                collider.isTrigger = true;
+                rotationFix.AddComponent<Flip>();
+            }
+            if (child.tag == "Coin")
+            {
+                collider.isTrigger = true;
+                child.gameObject.AddComponent<Coin>();
+            }
+            if (child.tag == "EndPlatform")
+            {
+                collider.isTrigger = true;
+            }
+        }
 	}
 
 	public void Pop()
@@ -74,9 +103,12 @@ public class PopupGroup : MonoBehaviour {
 			//So we create our physics objects
 			foreach (Transform child in children)
 			{
-				if (child.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                //Debug.Log(child.tag);
+                if (child.gameObject.GetInstanceID() == gameObject.GetInstanceID() || 
+                    child.tag == "Untagged" ||
+                    child.parent.tag == "SwitchToken")
 				{
-					//Skip the root
+					//Skip the root and pivots
 					continue;
 				}
 

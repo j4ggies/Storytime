@@ -16,9 +16,9 @@ public class BookController : MonoBehaviour {
 	private Quaternion initialCameraRotation;
 	private Matrix4x4 initialProjectionMatrix;
 
-	private Vector3 desiredCameraPosition = new Vector3(0, 4.5f, -23.8f); //TODO: this X and Y coordinate should follow player
+    private Vector3 desiredCameraPosition = new Vector3(1.25f, 4.5f, -23.8f); //TODO: this X and Y coordinate should follow player
 	private Quaternion desiredCameraRotation = Quaternion.identity;
-	private float orthoSize = 5;
+	private float orthoSize = 7;
 	private Matrix4x4 desiredProjectionMatrix;
 
 	void Start () {
@@ -44,7 +44,7 @@ public class BookController : MonoBehaviour {
 	
 	public void TurnPage()
 	{
-		if (spreadIndex < Spreads.Length - 1)
+        if (spreadIndex < Spreads.Length - 1)
 		{
 			Spread nextSpread = Spreads[spreadIndex + 1].GetComponent<Spread>();
 			nextSpread.Turn();
@@ -71,7 +71,7 @@ public class BookController : MonoBehaviour {
 	
 
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.N))
 		{
 			BeginAnimation();
 		}
@@ -81,12 +81,12 @@ public class BookController : MonoBehaviour {
 
 	void Animate()
 	{
-		if (startTime < 0)
+        if (startTime < 0 || spreadIndex == Spreads.Length)
 		{
 			return;
 		}
 
-		if (zoomedOut)
+        if (zoomedOut)
 		{
 
 			if (!turnedPage)
@@ -134,4 +134,9 @@ public class BookController : MonoBehaviour {
 		}
 		return ret;
 	}
+
+    public void End () {
+        BeginAnimation();
+        Animate();
+    }
 }

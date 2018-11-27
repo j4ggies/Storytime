@@ -7,6 +7,9 @@ public class Spread : MonoBehaviour {
 	public GameObject LeftPage;
 	public GameObject RightPage;
 	public Transform SpinePoint; //Center of rotation
+    public string[] Colors;
+    public string DefaultColor;
+    public GameObject Player;
 
 	private enum SpreadState
 	{
@@ -104,12 +107,29 @@ public class Spread : MonoBehaviour {
 				if (state == SpreadState.OPEN)
 				{
 
-				} if (state == SpreadState.CLOSED)
+				} 
+                if (state == SpreadState.CLOSED)
 				{
 					SetPopupVisibility(false);
 					SetLeftPageVisibility(false);
 					SetRightPageVisibility(false);
 				}
+
+                //Enable player rigidbody
+                if (Player != null) Player.GetComponent<Rigidbody2D>().simulated = true;
+
+                //Disable non-default groups
+                foreach (string color in Colors)
+                {
+                    if (color == DefaultColor) continue;
+                    foreach (GameObject o in GameObject.FindGameObjectsWithTag(color))
+                    {
+                        if (o.transform.parent.tag != "SwitchToken")
+                        {
+                            o.SetActive(false);
+                        }
+                    }
+                }
 			}
 		}
 	}
