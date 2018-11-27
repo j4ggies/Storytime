@@ -15,7 +15,6 @@ public class PopupGroup : MonoBehaviour {
 	private float rotationStartTime = -1; //This is the number we base our animations off of. When the animation starts we set this to current time.
 	private float angle = 0; //This keeps track of our current angle. Theoretically we can get rid of this and just use the GameObject's rotation.
 
-
 	Bounds GetBounds()
 	{
 		Bounds bounds = new Bounds(transform.position, Vector3.one);
