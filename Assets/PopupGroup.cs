@@ -63,11 +63,12 @@ public class PopupGroup : MonoBehaviour {
             bottomCollider.radius = 0.22f;
             bottomCollider.offset = new Vector2(0, -0.1f);
             BoxCollider2D topCollider = rotationFix.AddComponent<BoxCollider2D>();
-            topCollider.size = new Vector2(0.45f, 0.41f);
+            topCollider.size = new Vector2(0.42f, 0.41f);
             topCollider.offset = new Vector2(0, 0.11f);
             PhysicsMaterial2D slippery = new PhysicsMaterial2D();
             slippery.friction = 0;
             slippery.bounciness = 0;
+            slippery.name = "slippery";
             topCollider.sharedMaterial = slippery;
         } else {
             BoxCollider2D collider = rotationFix.AddComponent<BoxCollider2D>();
