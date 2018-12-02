@@ -136,6 +136,6 @@ public class BookController : MonoBehaviour {
 	}
 
     public void NewSpread () {
-        TurnPage();
+        BeginAnimation();
     }
 }

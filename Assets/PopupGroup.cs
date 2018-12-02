@@ -70,6 +70,7 @@ public class PopupGroup : MonoBehaviour {
             slippery.bounciness = 0;
             slippery.name = "slippery";
             topCollider.sharedMaterial = slippery;
+            bottomCollider.sharedMaterial = slippery;
         } else {
             BoxCollider2D collider = rotationFix.AddComponent<BoxCollider2D>();
             collider.size = Vector2.one;
