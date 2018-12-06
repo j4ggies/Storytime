@@ -71,6 +71,8 @@ public class BookController : MonoBehaviour {
 	
 
 	void Update () {
+        if (PauseMenu.GamePaused) return;
+
 		if (Input.GetKeyDown(KeyCode.N))
 		{
 			BeginAnimation();

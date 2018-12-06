@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (PauseMenu.GamePaused) return;
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
