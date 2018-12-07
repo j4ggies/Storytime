@@ -5,6 +5,7 @@ using UnityEngine;
 public class BookController : MonoBehaviour {
 
 	public GameObject[] Spreads;
+    public GameObject CoverSpread;
 
 	private int spreadIndex = -1;
 
@@ -20,6 +21,8 @@ public class BookController : MonoBehaviour {
 	private Quaternion desiredCameraRotation = Quaternion.identity;
 	private float orthoSize = 7;
 	private Matrix4x4 desiredProjectionMatrix;
+
+    private bool open = false;
 
 	void Start () {
 		initialCameraPosition = Camera.main.transform.position;
@@ -40,10 +43,21 @@ public class BookController : MonoBehaviour {
 				spread.SetRightPageVisibility(false);
 			}
 		}
-	}
+
+        CoverSpread.transform.position = new Vector3(+8.5f, 0, 0);
+        CoverSpread.GetComponent<Spread>().SetRightPageVisibility(false);
+    }
 	
 	public void TurnPage()
 	{
+        if (!open)
+        {
+            open = true;
+            CoverSpread.GetComponent<Spread>().Turn();
+            CoverSpread.GetComponent<Spread>().SetRightPageVisibility(false);
+            return;
+        }
+
         if (spreadIndex < Spreads.Length - 1)
 		{
 			Spread nextSpread = Spreads[spreadIndex + 1].GetComponent<Spread>();
@@ -53,12 +67,17 @@ public class BookController : MonoBehaviour {
 		if (spreadIndex >= 0)
 		{
 			Spread currentSpread = Spreads[spreadIndex].GetComponent<Spread>();
-			currentSpread.Turn();
+			//currentSpread.Turn();
 
 			if (spreadIndex == Spreads.Length - 1)
 			{
+                Debug.Log("YEET");
 				currentSpread.SetRightPageVisibility(true);
-			}
+                currentSpread.Turn(true);
+			} else
+            {
+                currentSpread.Turn();
+            }
 		}
 
 		spreadIndex++;
@@ -79,6 +98,16 @@ public class BookController : MonoBehaviour {
 		Animate();
 	}
 
+    void HideCover()
+    {
+        CoverSpread.GetComponent<Spread>().SetLeftPageVisibility(false);
+    }
+
+    void ShowCover()
+    {
+        CoverSpread.GetComponent<Spread>().SetRightPageVisibility(true);
+    }
+
 	void Animate()
 	{
         if (startTime < 0 || spreadIndex == Spreads.Length)
@@ -93,7 +122,15 @@ public class BookController : MonoBehaviour {
 			{
 				turnedPage = true;
 				TurnPage();
-			}
+                if (spreadIndex == 0)
+                {
+                    Invoke("HideCover", 1);
+                }
+                if (spreadIndex == Spreads.Length)
+                {
+                    ShowCover();
+                }
+            }
 
 			float delta = (Time.time - startTime - 1) * 1f; //Time since animation began
 			float clampedDelta = Mathf.Clamp(delta, 0, 1); //Ensure we are in the range [0, 1]

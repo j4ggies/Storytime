@@ -20,6 +20,7 @@ public class Spread : MonoBehaviour {
 
 	private float rotationStartTime = -1; //This is the number we base our animations off of. When the animation starts we set this to current time.
 	private SpreadState state;
+    private bool donthide;
 
 	void Start () {
 		LeftPage.transform.RotateAround(SpinePoint.position, Vector3.forward, -180); //Our spread is initially open, so we need to close it (set it to UNOPENED)
@@ -30,7 +31,10 @@ public class Spread : MonoBehaviour {
 	public void SetLeftPageVisibility(bool visibility)
 	{
 		LeftPage.GetComponent<MeshRenderer>().enabled = visibility;
-	}
+        foreach (MeshRenderer r in LeftPage.GetComponentsInChildren<MeshRenderer>()) {
+            r.enabled = visibility;
+        }
+    }
 
 	public void SetRightPageVisibility(bool visibility)
 	{
@@ -53,9 +57,10 @@ public class Spread : MonoBehaviour {
 		}
 	}
 
-	public void Turn()
+	public void Turn(bool donthide=false)
 	{
 		rotationStartTime = Time.time; //Begin animation
+        this.donthide = donthide;
 
 		//Make every PopupGroup pop up
 		PopupGroup[] popUpGroups = GetComponentsInChildren<PopupGroup>();
@@ -71,7 +76,7 @@ public class Spread : MonoBehaviour {
 			SetRightPageVisibility(true);
 		} else if (state == SpreadState.OPEN)
 		{
-			SetRightPageVisibility(false);
+			//SetRightPageVisibility(false);
 		}
 	}
 
@@ -112,7 +117,7 @@ public class Spread : MonoBehaviour {
 				{
 					SetPopupVisibility(false);
 					SetLeftPageVisibility(false);
-					SetRightPageVisibility(false);
+					SetRightPageVisibility(donthide);
 				}
 
                 //Enable player rigidbody
