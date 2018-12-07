@@ -17,6 +17,7 @@ public class Flip : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision) {
         foreach (GameObject o in currentGroups)
         {
+            if (o.transform.tag == "Gray") continue;
             if (o.transform.parent.tag != "SwitchToken") {
                 o.SetActive(false);
             }

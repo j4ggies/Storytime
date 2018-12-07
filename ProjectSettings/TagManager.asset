@@ -10,6 +10,7 @@ TagManager:
   - Block
   - Coin
   - EndPlatform
+  - Gray
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour {
     public Transform groundCheck;
     public LayerMask whatIsGround;
 
+    [SerializeField] private Text scoreText;
+    private int score = 0;
     private bool facingRight = true;
     private bool grounded = false;
     private float groundRadius = 0.2f;
@@ -58,5 +61,15 @@ public class PlayerController : MonoBehaviour {
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.transform.parent.tag == "Coin")
+        {
+            Destroy(col.transform.parent.gameObject);
+            score++;
+            scoreText.text = score.ToString();
+        }
     }
 }

@@ -12,8 +12,6 @@ public class KillPlayer : MonoBehaviour {
     {
         if (col.transform.CompareTag("Player"))
         {
-
-            // TODO reset platforms
             col.transform.position = spawnPoint.position;
         }
     }
